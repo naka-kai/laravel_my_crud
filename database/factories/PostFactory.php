@@ -11,7 +11,16 @@ $factory->define(Post::class, function (Faker $faker) {
         //
         'title' => $faker->realText(10),
         'content' => $faker->realText(255),
-        'user_id' => 1,
+        'start_date' => $faker->date('Y-m-d'),
+        'start_time' => $faker->date('h:i'),
+        'end_date' => $faker->date('Y-m-d'),
+        'end_time' => $faker->date('h:i'),
+        'place' => $faker->streetAddress,
+        'place_url' => $faker->url,
+        'price' => $faker->randomNumber(4),
+        'parking' => $faker->numberBetween(0, 2),
+        'other' => $faker->realText,
+        // 'user_id' => 1,
         'updated_at' => now(),
         'created_at' => now(),
     ];

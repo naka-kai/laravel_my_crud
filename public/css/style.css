@@ -4,3 +4,25 @@
     overflow: hidden;
     max-width: 0;
 }
+
+.tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.th {
+    width: 20%;
+    padding: 20px 0;
+}
+
+.td {
+    width: 80%;
+    padding: 20px 0;
+}
+
+.sun {
+    color: lightcoral;
+}
+
+.sat {
+    color: lightblue;
+}

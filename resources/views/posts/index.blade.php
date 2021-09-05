@@ -6,12 +6,26 @@
         <div class="col-md-12">
             <div class="card">
 
-                <div class="card-header">Posts Index</div>
+                <div class="card-header d-flex justify-content-between">Posts Index
+                    <div>
+                        
+                    </div>
+                </div>
 
                 @auth
-                <form action="{{ route('posts.create') }}">
-                    <button class="btn btn-primary m-3">新規作成</button>
-                </form>
+                <div class="d-flex justify-content-between align-items-center">
+                    <form action="{{ route('posts.create') }}">
+                        @csrf
+                        <button class="btn btn-primary m-3">新規作成</button>
+                    </form>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <button class="btn btn-dark m-3">ログアウト</button>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
                 @endauth
 
                 <div class="card-body">

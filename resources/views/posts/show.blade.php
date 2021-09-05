@@ -17,20 +17,42 @@
 
                         <div>
                             <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th class="col" style="width:25%">{{ __('タイトル') }}</th>
-                                        <th class="col" style="width:50%">{{ __('内容') }}</th>
-                                        <th class="col" style="width:25%">{{ __('作成日時') }}</th>
+                                    <tr class="tr">
+                                        <th class="th">{{ __('タイトル') }}</th>
+                                        <td class="td">{{ $post->title }}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="col" style="width:25%">{{ $post->title }}</td>
-                                        <td class="col" style="width:50%">{{ $post->content }}</td>
-                                        <td class="col" style="width:25%">{{ $post->created_at }}</td>
+                                    <tr class="tr">
+                                        <th class="th">{{ __('内容') }}</th>
+                                        <td class="td">{{ $post->content }}</td>
                                     </tr>
-                                </tbody>
+                                    <tr class="tr">
+                                        <th class="th">{{ __('開催日時') }}</th>
+                                        <td class="td">{{ \Carbon\Carbon::parse($post->start_date)->format('Y年m月d日') . ' ' . $post->start_time . ' 〜 ' . \Carbon\Carbon::parse($post->end_date)->format('Y年m月d日') . ' ' . $post->end_time }}</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <th class="th">{{ __('開催場所') }}</th>
+                                        <td class="td">{{ $post->place }}</td>
+                                    </tr>
+                                    @if (isset($post->placeurl))
+                                    <tr class="tr">
+                                        <th class="th">{{ __('開催場所URL') }}</th>
+                                        <td class="td">{{ $post->placeurl }}</td>
+                                    </tr>
+                                    @endif
+                                    <tr class="tr">
+                                        <th class="th">{{ __('出店料金') }}</th>
+                                        <td class="td">{{ number_format($post->price).'円' }}</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <th class="th">{{ __('駐車場') }}</th>
+                                        <td class="td">{{ $post->parking }}</td>
+                                    </tr>
+                                    @if (isset($post->other))
+                                    <tr class="tr">
+                                        <th class="th">{{ __('その他') }}</th>
+                                        <td class="td">{{ $post->other }}</td>
+                                    </tr>
+                                    @endif
                             </table>
                         </div>
 
@@ -41,6 +63,11 @@
 
                             @auth
                             <a href="{{ route('posts.edit', $post->id) }}"><button type="button" class="btn btn-primary m-2">編集</button></a>
+
+                            {{-- <form action="{{ route('posts.edit', $post->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" name="edit" class="btn btn-danger m-2">編集</button>
+                            </form> --}}
 
                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                 @csrf

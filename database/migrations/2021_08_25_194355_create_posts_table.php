@@ -17,9 +17,18 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('content');
-            $table->bigInteger('user_id')->unsigned(); //整数のみ(参照するにはuserテーブルのidと合わせてbigにしないといけない)
+            $table->date('start_date');
+            $table->string('start_time');
+            $table->date('end_date');
+            $table->string('end_time');
+            $table->string('place', 100);
+            $table->text('place_url')->nullable();
+            $table->integer('price');
+            $table->integer('parking');
+            $table->string('other')->nullable();
+            // $table->bigInteger('user_id')->unsigned(); //整数のみ(参照するにはuserテーブルのidと合わせてbigにしないといけない)
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users'); //usersテーブルから自動でidを取得する
+            // $table->foreign('user_id')->references('id')->on('users'); //usersテーブルから自動でidを取得する
         });
     }
 

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Posts New Confirm</div>
+                <div class="card-header">Posts Edit Confirm</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form action="{{ route('posts.store') }}" method="POST">
+                    <form action="{{ route('posts.update', $post->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="title">タイトル</label>
@@ -69,7 +69,7 @@
                         @endif
                         <div class="d-flex">
                             <button type="submit" class="btn btn-primary m-2" name="back" value="back">戻る</button>
-                            <button type="submit" class="btn btn-primary m-2" name="store" value="true">作成</button>
+                            <button type="submit" class="btn btn-primary m-2" name="submit" value="submit">変更</button>
                         </div>
                     </form>
 
